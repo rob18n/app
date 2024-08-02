@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  laravel-backend:
+    build:
+      context: ./laravel-backend
+      dockerfile: Dockerfile
+    container_name: laravel-backend
+    volumes:
+      - ./laravel-backend:/var/www/html
+    ports:
+      - "2402:9000"
+    depends_on:
+      - db
+
+  vue-frontend:
+    build:
+      context: ./vue-frontend
+      dockerfile: Dockerfile
+    container_name: vue-frontend
+    ports:
+      - "3112:5173"
+    environment:
+      VITE_API_BASE_URL: "http://localhost:2402"
+
+  db:
+    image: mysql:8.0
+    container_name: laravel-db
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    ports:
+      - "2506:3306"
+
+volumes:
+  dbdata:
