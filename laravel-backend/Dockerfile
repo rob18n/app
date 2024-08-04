@@ -1,48 +1,30 @@
-# Use an official PHP image with FPM and PHP 8.2 as the base
-FROM php:8.2-fpm
+FROM php:8.2-fpm-alpine
 
-# Set the working directory
+# Install necessary PHP extensions and Nginx
+RUN apk add --no-cache nginx \
+    && docker-php-ext-install pdo pdo_mysql
+
+# Set working directory
 WORKDIR /var/www/html
 
-# Install system dependencies and Node.js
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    locales \
-    zip \
-    unzip \
-    git \
-    curl \
-    libonig-dev \
-    libxml2-dev \
-    libzip-dev \
-    nodejs \
-    npm \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
-
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Copy the existing Laravel application
+# Copy the existing application code
 COPY . .
 
-# Set file ownership and permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage
-
-# Install Laravel dependencies
+# Install Composer dependencies
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --optimize-autoloader --no-dev
 
-# Generate the Laravel application key
-RUN php artisan key:generate
+# Set correct permissions for storage and cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Run database migrations (optional, depends on your setup)
-# RUN php artisan migrate --force
+# Copy custom nginx.conf
+COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
 
-# Expose port 9000 for PHP-FPM
-EXPOSE 9000
+# Copy Nginx server block configuration file
+COPY ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 
-# Start PHP-FPM and Laravel server
-CMD ["php-fpm"]
+# Command to run migrations and start services
+CMD php artisan migrate --force && php-fpm -D && nginx -g 'daemon off;'
+
+# Expose port 80
+EXPOSE 80

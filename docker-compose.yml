@@ -9,9 +9,15 @@ services:
     volumes:
       - ./laravel-backend:/var/www/html
     ports:
-      - "2402:9000"
+      - "2402:80"
     depends_on:
-      - db
+      - rob18n-db
+    entrypoint: >
+      sh -c "
+      php artisan migrate --force &&
+      php-fpm -D &&
+      nginx -g 'daemon off;'
+      "
 
   vue-frontend:
     build:
@@ -19,15 +25,11 @@ services:
       dockerfile: Dockerfile
     container_name: vue-frontend
     ports:
-      - "3112:5173"
-    environment:
-      VITE_API_BASE_URL: "http://localhost:2402"
+      - "3112:80"
 
-  db:
+  rob18n-db:
     image: mysql:8.0
-    container_name: laravel-db
-    volumes:
-      - dbdata:/var/lib/mysql
+    container_name: rob18n-db
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: laravel
@@ -35,6 +37,8 @@ services:
       MYSQL_PASSWORD: secret
     ports:
       - "2506:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
 
 volumes:
   dbdata:
