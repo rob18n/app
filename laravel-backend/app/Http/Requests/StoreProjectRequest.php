@@ -8,7 +8,7 @@ class StoreProjectRequest extends FormRequest
 {
     public function authorize()
     {
-        return false; // Set this to false if you want to handle authorization in another way
+        return true;
     }
 
     public function rules()
