@@ -1,0 +1,24 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/bootstrap";
+
+@import "button.scss";
+@import "card.scss";
+@import "font.scss";
+@import "navbar.scss";
+
+:root {
+    --bs-primary: #E65A2C;
+    --bs-dark: #1E2835;
+    --bs-light: #f8f9fa;
+}
+
+body {
+    background-color: #f8f9fa;
+
+}
+
+.card, .btn, .navbar {
+    border-radius: 0 !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

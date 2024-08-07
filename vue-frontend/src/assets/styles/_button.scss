@@ -1,0 +1,10 @@
+
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+
+    &:hover {
+        background-color: rgba(230, 90, 44, 0.8);
+        border-color: rgba(230, 90, 44, 0.8);
+    }
+}
