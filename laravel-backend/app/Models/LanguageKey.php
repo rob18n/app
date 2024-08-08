@@ -19,6 +19,6 @@ class LanguageKey extends Model
 
     public function languages()
     {
-        return $this->belongsToMany(Language::class, 'language_language_key');
+        return $this->belongsToMany(Language::class);
     }
 }

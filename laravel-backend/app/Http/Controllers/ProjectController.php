@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
-use Illuminate\Http\Request;
+use App\Models\ProjectLanguage;
 use Illuminate\Http\Response;
 
 class ProjectController extends Controller
@@ -21,6 +21,14 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $project = Project::create($request->validated());
+
+        foreach (json_decode($request->selectedLanguages) as $language) {
+            ProjectLanguage::create([
+                'project_id' => $project->id,
+                'language_id' => $language->id,
+                'primary' => $language->primary
+            ]);
+        }
 
         return response()->json($project, Response::HTTP_CREATED);
     }
@@ -61,6 +69,7 @@ class ProjectController extends Controller
             return response()->json(['message' => 'Project not found'], Response::HTTP_NOT_FOUND);
         }
 
+        $project->languages->delete();
         $project->delete();
 
         return response()->json(['message' => 'Project deleted'], Response::HTTP_OK);
