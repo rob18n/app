@@ -22,8 +22,11 @@
 </template>
 <script setup>
 import { useProjectStore } from '@/stores/projectStore'
+import { useLanguageStore } from '@/stores/languageStore'
 
 const projectStore = useProjectStore()
+const languageStore = useLanguageStore()
 
 projectStore.get()
+languageStore.get()
 </script>
