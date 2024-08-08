@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import ProjectsLayout from '@/layouts/projects/Index.vue'
-import ProjectsPage from '@/pages/projects/Index.vue'
+import ProjectsLayout from '@/layouts/default/Index.vue'
+import ProjectsPage from '@/pages/project-list/Index.vue'
 
 const routes = [
     {
