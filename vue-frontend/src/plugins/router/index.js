@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import ProjectsLayout from '@/layouts/default/Index.vue'
-import ProjectsPage from '@/pages/project-list/Index.vue'
+import ProjectListPage from '@/pages/project-list/Index.vue'
+import ProjectPage from '@/pages/project/Index.vue'
+import ProjectDashboardPage from '@/pages/project-dashboard/Index.vue'
+import ProjectVariableListPage from '@/pages/project-variable-list/Index.vue'
 
 const routes = [
     {
@@ -9,9 +12,26 @@ const routes = [
         children: [
             {
                 path: '',
-                name: 'Projects',
-                component: ProjectsPage,
+                name: 'ProjectListPage',
+                component: ProjectListPage,
             },
+            {
+                path: '/project/:id',
+                name: 'ProjectPage',
+                component: ProjectPage,
+                children: [
+                    {
+                        path: '/project/:id/dashboard',
+                        name: 'ProjectDashboardPage',
+                        component: ProjectDashboardPage,
+                    },
+                    {
+                        path: '/project/:id/variables',
+                        name: 'ProjectVariableListPage',
+                        component: ProjectVariableListPage,
+                    },
+                ]
+            }
         ],
     },
 ]

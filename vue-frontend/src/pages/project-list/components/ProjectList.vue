@@ -14,8 +14,10 @@
             <div class="list-group-item list-group-item-info" v-if="hasLoaded && !hasEntries">
                 Keine Einträge vorhanden
             </div>
-            <div class="list-group-item d-flex justify-content-between align-items-top"
-                v-for="project in projectEntries" :key="project.id">
+            <router-link :to="{ name: 'ProjectDashboardPage', params: { id: project.id } }"
+                class="list-group-item d-flex justify-content-between align-items-top" v-for="project in projectEntries"
+                :key="project.id">
+
                 <div>
                     <h3 class="display-7">{{ project.title }}</h3>
                     <p class="text-muted" v-html="project.description"></p>
@@ -25,7 +27,7 @@
                     </ProjectEditModal>
                     <ProjectDestroyModal :project="project"></ProjectDestroyModal>
                 </div>
-            </div>
+            </router-link>
         </div>
         <div class="card-footer text-end">
             <ProjectAddModal></ProjectAddModal>
