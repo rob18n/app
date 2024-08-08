@@ -20,7 +20,7 @@
                     <h3 class="display-7">{{ project.title }}</h3>
                     <p class="text-muted" v-html="project.description"></p>
                 </div>
-                <div class="btn-group" role="group" aria-label="Basic example">
+                <div class="btn-group" role="group" aria-label="List">
                     <ProjectEditModal :project="project">
                     </ProjectEditModal>
                     <ProjectDestroyModal :project="project"></ProjectDestroyModal>

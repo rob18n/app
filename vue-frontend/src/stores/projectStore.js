@@ -19,10 +19,11 @@ export const useProjectStore = defineStore('projectStore', () => {
             }))
     }
 
-    const store = async function (title, description) {
+    const store = async function (title, description, selectedLanguages) {
         return axios.post(`${config.apiUrl}/projects`, {
             title: title,
-            description: description
+            description: description,
+            selectedLanguages: JSON.stringify(selectedLanguages)
         }).then((response) => {
             projects.value.push(response.data)
         }).catch((e) => {

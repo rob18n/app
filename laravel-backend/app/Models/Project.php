@@ -12,8 +12,15 @@ class Project extends Model
 
     protected $fillable = ['title', 'description'];
 
+    protected $with = ['languages'];
+
     public function languageKeys()
     {
         return $this->hasMany(LanguageKey::class);
+    }
+
+    public function languages()
+    {
+        return $this->hasMany(ProjectLanguage::class);
     }
 }

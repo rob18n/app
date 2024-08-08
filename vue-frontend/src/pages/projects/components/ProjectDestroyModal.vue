@@ -27,8 +27,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
-import { Modal } from 'bootstrap';
+import { onMounted, ref } from 'vue'
+import { Modal } from 'bootstrap'
 import { useProjectStore } from '@/stores/projectStore'
 
 const props = defineProps(['project'])
@@ -39,9 +39,9 @@ let bootstrapModal = null
 
 const openModal = () => {
     if (bootstrapModal) {
-        bootstrapModal.show();
+        bootstrapModal.show()
     }
-};
+}
 
 const destroy = () => {
     projectStore.destroy(props.project.id).then(t => {
