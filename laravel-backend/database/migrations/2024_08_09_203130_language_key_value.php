@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('language_key_values', function (Blueprint $table) {
             $table->id();
-            $table->text('value');
+            $table->text('value')->nullable()->default(null);
             $table->foreignId('language_id')->constrained()->onDelete('cascade');
             $table->foreignId('language_key_id')->constrained()->onDelete('cascade');
             $table->timestamps();
