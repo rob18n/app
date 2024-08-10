@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProjectRequest extends FormRequest
+class StoreProjectLanguageKeyRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,9 +14,8 @@ class UpdateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'selectedLanguages' => 'string',
+            'key' => 'required|string|max:255',
+            'id' => 'required|exists:projects,id',
         ];
     }
 }

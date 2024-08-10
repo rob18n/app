@@ -10,7 +10,7 @@ class LanguageKey extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['key', 'project_id'];
+    protected $fillable = ['key', 'project_id', 'description'];
 
     public function project()
     {

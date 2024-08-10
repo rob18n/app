@@ -10,7 +10,8 @@ class CreateLanguageKeysTable extends Migration
     {
         Schema::create('language_keys', function (Blueprint $table) {
             $table->id();
-            $table->string('key')->unique();
+            $table->string('key');
+            $table->string('description');
             $table->foreignId('project_id')->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
