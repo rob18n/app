@@ -72,7 +72,7 @@ class ProjectLanguageKeyController extends Controller
     {
         $projectLanguage = ProjectLanguage::find($id);
 
-        if (!$project) {
+        if (!$projectLanguage) {
             return response()->json(['message' => 'projectLanguage not found'], Response::HTTP_NOT_FOUND);
         }
 
