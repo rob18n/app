@@ -8,7 +8,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProjectLanguageRequest extends FormRequest
+class UpdateProjectLanguageKeyRequest extends FormRequest
 {
     public function authorize()
     {
