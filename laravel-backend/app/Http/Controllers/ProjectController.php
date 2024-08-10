@@ -37,7 +37,7 @@ class ProjectController extends Controller
     // Display the specified project
     public function show($id)
     {
-        $project = Project::where('id', $id)->with('keys', 'languages')->first();
+        $project = Project::where('id', $id)->with('keys', 'keys.values', 'keys.values.language', 'languages')->first();
 
         if (!$project) {
             return response()->json(['message' => 'Project not found'], Response::HTTP_NOT_FOUND);
