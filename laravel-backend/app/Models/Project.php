@@ -12,6 +12,8 @@ class Project extends Model
 
     protected $fillable = ['title', 'description'];
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     public function keys()
     {
         return $this->hasMany(LanguageKey::class);
