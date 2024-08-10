@@ -12,6 +12,8 @@ class LanguageKey extends Model
 
     protected $fillable = ['key', 'project_id', 'description'];
 
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
     public function project()
     {
         return $this->belongsTo(Project::class);
@@ -20,5 +22,10 @@ class LanguageKey extends Model
     public function languages()
     {
         return $this->belongsToMany(Language::class);
+    }
+
+    public function values()
+    {
+        return $this->hasMany(LanguageKeyValue::class);
     }
 }
