@@ -1,10 +1,10 @@
 <template>
     <div id="content" class="col-12 col-md-8">
-        <div>
+        <div v-if="showContent">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <h5>ab.cde.fghi</h5>
-                    <p>Lorem ipsum</p>
+                    <h5>{{ variable.key }}</h5>
+                    <p>{{ variable.description }}</p>
                 </div>
                 <div>
                     <div class="btn-group">
@@ -17,17 +17,36 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">de_DE</label>
-                <textarea class="form-control" id="description" rows="3"></textarea>
+            <div class="mb-3" v-for="key in variable.values">
+                <label for="description" class="form-label">{{ key.language.shortkey }}</label>
+                <textarea class="form-control" id="description" rows="3" v-model="key.value"
+                    @blur="update(key)"></textarea>
             </div>
-
-            <div class="mb-3">
-                <label for="description" class="form-label">en_US</label>
-                <textarea class="form-control" id="description" rows="3"></textarea>
+        </div>
+        <div v-else class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-center">
+                <p class="fs-5">Keine Sprachvariable ausgewählt</p>
+                <p>Wähle eine Sprachvariable aus, die du verwalten möchtest.</p>
             </div>
         </div>
     </div>
 </template>
 <script setup>
+import { computed } from "vue";
+import { useSelectedProjectStore } from '@/stores/selectedProjectStore'
+
+const selectedProjectStore = useSelectedProjectStore()
+const { selectedVariable, selectVariable, updateVariable } = selectedProjectStore
+
+const update = function (key) {
+    selectedProjectStore.updateVariable(key)
+}
+
+const showContent = computed(() => {
+    return selectedProjectStore.selectedVariable != null
+})
+
+const variable = computed(() => {
+    return selectedProjectStore.selectedVariable
+})
 </script>

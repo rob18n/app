@@ -8,6 +8,7 @@ export const useSelectedProjectStore = defineStore('selectedProjectStore', () =>
     const languages = ref([])
     const axios = inject('axios')
     const projectLoaded = ref(false)
+    const selectedVariable = ref(null)
 
     const get = function (id) {
         return axios.get(`${config.apiUrl}/projects/${id}`, {})
@@ -23,7 +24,7 @@ export const useSelectedProjectStore = defineStore('selectedProjectStore', () =>
     }
 
     const store = async function (key, description, values, id) {
-        return axios.post(`${config.apiUrl}/project-languages`, {
+        return axios.post(`${config.apiUrl}/project-languages-key`, {
             id: id,
             key: key,
             description: description,
@@ -35,12 +36,29 @@ export const useSelectedProjectStore = defineStore('selectedProjectStore', () =>
         })
     }
 
+    const updateVariable = async function (variable) {
+        return axios.put(`${config.apiUrl}/project-languages-key-value/${variable.id}`, {
+            value: variable.value,
+        }).then((response) => {
+            const keyIndex = project.value.keys.findIndex(k => k.id === variable.language_key_id)
+            const variableIndex = project.value.keys[keyIndex].values.findIndex(v => v.id === variable.id)
+
+            project.value.keys[keyIndex].values[variableIndex].value = variable.value
+        }).catch((e) => {
+            return e
+        })
+    }
+
     const checkIfKeyExists = function (key) {
         return keys.value.findIndex(k => k.key === key) !== -1
     }
 
+    const selectVariable = function (variable) {
+        selectVariable.value = variable
+    }
+
     return {
-        project, projectLoaded, keys, languages,
-        get, store, checkIfKeyExists
+        project, projectLoaded, keys, languages, selectedVariable,
+        get, store, checkIfKeyExists, selectVariable, updateVariable
     }
 })

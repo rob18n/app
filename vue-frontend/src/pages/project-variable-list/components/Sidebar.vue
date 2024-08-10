@@ -18,9 +18,10 @@
                     <li class="list-group-item list-group-item-info" v-if="hasLoaded && !hasEntries">
                         Keine Einträge vorhanden
                     </li>
-                    <li class="list-group-item" v-for="entry in keyEntries" :key="entry.key">
-                        a
-                        <p class="fs-6">{{ entry.key }}</p>
+                    <li class="list-group-item list-group-item-action" v-for="entry in keyEntries" :key="entry.key"
+                        @click="selectVariable(entry)">
+                        <p class="fs-5">{{ entry.key }}</p>
+                        <p>{{ entry.description }}</p>
                     </li>
                 </ul>
             </div>
@@ -33,12 +34,12 @@
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from "vue";
+import { computed } from "vue";
 import { useSelectedProjectStore } from '@/stores/selectedProjectStore'
 import LanguageVariableAddModal from './LanguageVariableAddModal.vue'
 
 const selectedProjectStore = useSelectedProjectStore()
-const { projectsLoaded, projects } = selectedProjectStore
+const { projectsLoaded, projects, selectedVariable } = selectedProjectStore
 
 const hasLoaded = computed(() => {
     return selectedProjectStore.projectLoaded
@@ -51,6 +52,10 @@ const keyEntries = computed(() => {
 const hasEntries = computed(() => {
     return selectedProjectStore.keys.length
 })
+
+const selectVariable = function (variable) {
+    selectedProjectStore.selectedVariable = variable
+}
 </script>
 
 <style lang="scss" scoped></style>
