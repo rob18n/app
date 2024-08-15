@@ -56,28 +56,30 @@ class ProjectLanguageKeyController extends Controller
 
     public function update(UpdateProjectLanguageKeyRequest $request, $id)
     {
-        $projectLanguage = ProjectLanguage::find($id);
+        $key = LanguageKey::find($id);
 
-        if (!$projectLanguage) {
-            return response()->json(['message' => 'ProjectLanguage not found'], Response::HTTP_NOT_FOUND);
+        if (!$key) {
+            return response()->json(['message' => 'key not found'], Response::HTTP_NOT_FOUND);
         }
 
-        $projectLanguage->update($request->validated());
+        $key->key = $request->key;
+        $key->description = $request->description;
+        $key->save();
 
-        return response()->json($projectLanguage, Response::HTTP_OK);
+        return response()->json($key, Response::HTTP_OK);
     }
 
 
     public function destroy($id)
     {
-        $projectLanguage = ProjectLanguage::find($id);
+        $key = LanguageKey::find($id);
 
-        if (!$projectLanguage) {
-            return response()->json(['message' => 'projectLanguage not found'], Response::HTTP_NOT_FOUND);
+        if (!$key) {
+            return response()->json(['message' => 'key not found'], Response::HTTP_NOT_FOUND);
         }
 
-        $projectLanguage->delete();
+        $key->delete();
 
-        return response()->json(['message' => 'projectLanguage deleted'], Response::HTTP_OK);
+        return response()->json(['message' => 'key deleted'], Response::HTTP_OK);
     }
 }

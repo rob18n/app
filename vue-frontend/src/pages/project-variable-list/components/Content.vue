@@ -8,12 +8,12 @@
                 </div>
                 <div>
                     <div class="btn-group">
-                        <div class="btn btn-secondary">
+                        <button type="button" class="btn btn-secondary" @click="openEditModal">
                             <BsPencilFill />
-                        </div>
-                        <div class="btn btn-danger">
+                        </button>
+                        <button type="button" class="btn btn-danger" @click="openDeleteModal">
                             <BsTrashFill />
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -29,18 +29,34 @@
                 <p>Wähle eine Sprachvariable aus, die du verwalten möchtest.</p>
             </div>
         </div>
+        <LanguageVariableDestroyModal :variable="variable"></LanguageVariableDestroyModal>
+        <LanguageVariableEditModal :variable="variable"></LanguageVariableEditModal>
     </div>
 </template>
 <script setup>
 import { computed } from "vue";
 import { useSelectedProjectStore } from '@/stores/selectedProjectStore'
+import { useModalStore } from '@/stores/modalStore'
+import LanguageVariableDestroyModal from './LanguageVariableDestroyModal.vue'
+import LanguageVariableEditModal from './LanguageVariableEditModal.vue'
 
+const modalStore = useModalStore()
+const { variableDeleteModalIsOpen, variableEditModalIsOpen } = modalStore
 const selectedProjectStore = useSelectedProjectStore()
-const { selectedVariable, selectVariable, updateVariable } = selectedProjectStore
+const { selectedVariable, selectVariable, updateKeyValue } = selectedProjectStore
 
 const update = function (key) {
-    selectedProjectStore.updateVariable(key)
+    selectedProjectStore.updateKeyValue(key)
 }
+
+const openDeleteModal = function () {
+    modalStore.variableDeleteModalIsOpen = true
+}
+
+const openEditModal = function () {
+    modalStore.variableEditModalIsOpen = true
+}
+
 
 const showContent = computed(() => {
     return selectedProjectStore.selectedVariable != null
