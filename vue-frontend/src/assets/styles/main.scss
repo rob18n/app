@@ -7,18 +7,22 @@
 @import "font.scss";
 @import "navbar.scss";
 
-:root {
-    --bs-primary: #E65A2C;
-    --bs-dark: #1E2835;
-    --bs-light: #f8f9fa;
+// custom components
+@import "components/project-variable-list-sidebar";
+
+:root  {
+  --bs-primary: #e65a2c;
+  --bs-dark: #1e2835;
+  --bs-light: #f8f9fa;
 }
 
 body {
-    background-color: #f8f9fa;
-
+  background-color: #f8f9fa;
 }
 
-.card, .btn, .navbar {
-    border-radius: 0 !important;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.card,
+.btn,
+.navbar {
+  border-radius: 0 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

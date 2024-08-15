@@ -13,8 +13,8 @@ class Language extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
-    public function languageKeys()
+    public function projects()
     {
-        return $this->belongsToMany(LanguageKey::class, 'language_language_key');
+        return $this->belongsToMany(Project::class, 'project_languages', 'language_id', 'project_id');
     }
 }

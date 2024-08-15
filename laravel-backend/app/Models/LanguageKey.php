@@ -10,7 +10,9 @@ class LanguageKey extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['key', 'project_id'];
+    protected $fillable = ['key', 'project_id', 'description'];
+
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     public function project()
     {
@@ -20,5 +22,10 @@ class LanguageKey extends Model
     public function languages()
     {
         return $this->belongsToMany(Language::class);
+    }
+
+    public function values()
+    {
+        return $this->hasMany(LanguageKeyValue::class);
     }
 }
