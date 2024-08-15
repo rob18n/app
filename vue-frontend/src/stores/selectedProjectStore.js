@@ -36,7 +36,20 @@ export const useSelectedProjectStore = defineStore('selectedProjectStore', () =>
         })
     }
 
-    const updateVariable = async function (variable) {
+    const updateKey = async function (key, description) {
+        return axios.put(`${config.apiUrl}/project-languages-key/${selectedVariable.value.id}`, {
+            key: key,
+            description: description,
+        }).then((response) => {
+            const variableIndex = keys.value.findIndex(k => k.id === response.data.id)
+            keys.value[variableIndex].key = response.data.key
+            keys.value[variableIndex].description = response.data.description
+        }).catch((e) => {
+            return e
+        })
+    }
+
+    const updateKeyValue = async function (variable) {
         return axios.put(`${config.apiUrl}/project-languages-key-value/${variable.id}`, {
             value: variable.value,
         }).then((response) => {
@@ -49,8 +62,19 @@ export const useSelectedProjectStore = defineStore('selectedProjectStore', () =>
         })
     }
 
+    const destroy = async function (id) {
+        return axios.delete(`${config.apiUrl}/project-languages-key/${id}`, {}).then((response) => {
+            const index = project.value.keys.findIndex(v => v.id === id)
+            project.value.keys.splice(index, 1)
+
+            selectedVariable.value = null
+        }).catch((e) => {
+            return e
+        })
+    }
+
     const checkIfKeyExists = function (key) {
-        return keys.value.findIndex(k => k.key === key) !== -1
+        return keys.value.findIndex(k => k.key === key && k.id != key.id) !== -1
     }
 
     const selectVariable = function (variable) {
@@ -59,6 +83,6 @@ export const useSelectedProjectStore = defineStore('selectedProjectStore', () =>
 
     return {
         project, projectLoaded, keys, languages, selectedVariable,
-        get, store, checkIfKeyExists, selectVariable, updateVariable
+        get, store, checkIfKeyExists, selectVariable, updateKeyValue, destroy, updateKey
     }
 })

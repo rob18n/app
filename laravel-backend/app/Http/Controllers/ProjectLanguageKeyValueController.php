@@ -20,4 +20,17 @@ class ProjectLanguageKeyValueController extends Controller
 
         return response()->json($variable, Response::HTTP_OK);
     }
+
+    public function destroy($id)
+    {
+        $variable = LanguageKeyValue::find($id);
+
+        if (!$variable) {
+            return response()->json(['message' => 'Variable not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $variable->delete();
+
+        return response()->json(['message' => 'Variable deleted'], Response::HTTP_OK);
+    }
 }

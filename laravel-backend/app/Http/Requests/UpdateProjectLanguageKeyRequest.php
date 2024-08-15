@@ -19,7 +19,7 @@ class UpdateProjectLanguageKeyRequest extends FormRequest
     {
         return [
             'key' => 'sometimes|required|string|max:255',
-            'project_id' => 'sometimes|required|exists:projects,id',
+            'description' => 'sometimes',
         ];
     }
 }
