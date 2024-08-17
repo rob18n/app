@@ -4,6 +4,7 @@ import ProjectListPage from '@/pages/project-list/Index.vue'
 import ProjectPage from '@/pages/project/Index.vue'
 import ProjectDashboardPage from '@/pages/project-dashboard/Index.vue'
 import ProjectVariableListPage from '@/pages/project-variable-list/Index.vue'
+import ProjectVariableImportPage from '@/pages/project-variable-import/Index.vue'
 
 const routes = [
     {
@@ -29,6 +30,11 @@ const routes = [
                         path: '/project/:id/variables',
                         name: 'ProjectVariableListPage',
                         component: ProjectVariableListPage,
+                    },
+                    {
+                        path: '/project/:id/import',
+                        name: 'ProjectVariableImportPage',
+                        component: ProjectVariableImportPage,
                     },
                 ]
             }
