@@ -21,6 +21,9 @@ FROM nginx:stable-alpine as production-stage
 # Copy the built files from the build stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
+# Copy the custom nginx configuration file
+COPY ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
+
 # Expose the port that Nginx will use
 EXPOSE 80
 
