@@ -14,13 +14,4 @@
 import { onMounted } from 'vue';
 import Sidebar from './components/Sidebar.vue';
 import Content from './components/Content.vue';
-import { useSelectedProjectStore } from '@/stores/selectedProjectStore'
-import { useRoute } from 'vue-router'
-
-const route = useRoute()
-const selectedProjectStore = useSelectedProjectStore()
-
-onMounted(() => {
-    selectedProjectStore.get(route.params.id)
-})
 </script>
