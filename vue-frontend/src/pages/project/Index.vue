@@ -16,14 +16,22 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { useSelectedProjectStore } from '@/stores/selectedProjectStore'
 
+const selectedProjectStore = useSelectedProjectStore()
+const { project } = selectedProjectStore
 const route = useRoute()
 
 const tabs = computed(() => [
     { name: "ProjectDashboardPage", label: "Dashboard" },
     { name: "ProjectVariableListPage", label: "Variables" },
     { name: "ProjectVariableImportPage", label: "Import" },
+    { name: "ProjectVariableExportPage", label: "Export" },
 ])
+
+onMounted(() => {
+    selectedProjectStore.get(route.params.id)
+})
 </script>
