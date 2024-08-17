@@ -62,7 +62,7 @@
                     </li>
                     <li class="list-group-item list-group-item-action" v-for="entry in sortedEntries" :key="entry.key"
                         @click="selectVariable(entry)">
-                        <p class="fs-5">{{ entry.key }}</p>
+                        <p>{{ entry.key }}</p>
                         <p>{{ entry.description }}</p>
                     </li>
                 </ul>
