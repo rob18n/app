@@ -1,8 +1,8 @@
 FROM php:8.2-fpm-alpine
 
 # Install necessary PHP extensions and Nginx
-RUN apk add --no-cache nginx \
-    && docker-php-ext-install pdo pdo_mysql
+RUN apk add --no-cache nginx libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql zip
 
 # Set working directory
 WORKDIR /var/www/html
