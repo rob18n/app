@@ -23,7 +23,7 @@ class ProjectLanguageKeyController extends Controller
         $languageKey = LanguageKey::create([
             'project_id' => $request->id,
             'key' => $request->key,
-            'description' => $request->description
+            'description' => $request->description ?? ''
         ]);
 
         foreach (collect(json_decode($request->values))->toArray() as $languageId => $value) {
@@ -63,7 +63,7 @@ class ProjectLanguageKeyController extends Controller
         }
 
         $key->key = $request->key;
-        $key->description = $request->description;
+        $key->description = $request->description ?? '';
         $key->save();
 
         return response()->json($key, Response::HTTP_OK);
