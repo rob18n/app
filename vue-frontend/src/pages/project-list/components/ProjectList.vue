@@ -37,6 +37,7 @@
 
 <script setup>
 import { useProjectStore } from '@/stores/projectStore'
+import { useLanguageStore } from '@/stores/languageStore'
 import { computed, onMounted, ref } from 'vue'
 import ProjectAddModal from './ProjectAddModal.vue'
 import ProjectEditModal from './ProjectEditModal.vue'
@@ -44,6 +45,7 @@ import ProjectDestroyModal from './ProjectDestroyModal.vue'
 
 const projectStore = useProjectStore()
 const { projectsLoaded, projects } = projectStore
+const languageStore = useLanguageStore()
 
 const hasLoaded = computed(() => {
     return projectStore.projectsLoaded
@@ -55,5 +57,10 @@ const projectEntries = computed(() => {
 
 const hasEntries = computed(() => {
     return projectStore.projects.length
+})
+
+onMounted(() => {
+    languageStore.get()
+    projectStore.get()
 })
 </script>
