@@ -69,7 +69,6 @@ class ProjectController extends Controller
             return response()->json(['message' => 'Project not found'], Response::HTTP_NOT_FOUND);
         }
 
-        $project->languages->delete();
         $project->delete();
 
         return response()->json(['message' => 'Project deleted'], Response::HTTP_OK);
