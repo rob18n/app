@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "rob18n": "node ./scripts/rob18n.js"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.0.14",
@@ -14,8 +15,10 @@
     "@popperjs/core": "^2.11.8",
     "axios": "^1.7.3",
     "bootstrap": "^5.3.3",
+    "node-fetch": "^3.3.2",
     "pinia": "^2.2.0",
     "scss": "^0.2.4",
+    "unzipper": "^0.12.3",
     "vue": "^3.4.31",
     "vue-router": "^4.4.2"
   },
