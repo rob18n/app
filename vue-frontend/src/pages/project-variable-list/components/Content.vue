@@ -57,7 +57,6 @@ const openEditModal = function () {
     modalStore.variableEditModalIsOpen = true
 }
 
-
 const showContent = computed(() => {
     return selectedProjectStore.selectedVariable != null
 })
