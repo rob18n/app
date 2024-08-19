@@ -36,6 +36,17 @@
                                     v-model="values[language.id]"></textarea>
                             </div>
                         </div>
+                        <hr>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" v-model="addMoreKeys" id="addMoreKeys">
+                            <label class="form-check-label" for="addMoreKeys">
+                                Weiteren Key hinzufügen
+                            </label>
+                        </div>
+                        <div class="mb-3" v-if="addMoreKeys">
+                            <input type="text" class="form-control" id="startkey"
+                                placeholder="Die nächste Variable startet mit.." v-model="keyPreset">
+                        </div>
                     </div>
 
                     <div class="modal-footer">
@@ -66,6 +77,8 @@ const values = ref({})
 const route = useRoute()
 const keyExists = ref(false)
 const isLoading = ref(false)
+const addMoreKeys = ref(false)
+const keyPreset = ref('')
 
 let bootstrapModal = null
 
@@ -83,7 +96,12 @@ const store = () => {
             description.value = ''
             values.value = {}
             keyExists.value = false
-            bootstrapModal.hide()
+
+            if (!addMoreKeys.value) {
+                bootstrapModal.hide()
+            } else {
+                key.value = keyPreset.value
+            }
         })
     } else {
         keyExists.value = true
@@ -92,7 +110,7 @@ const store = () => {
 }
 
 const hasContent = computed(() => {
-    return key.value && Object.values(values.value).some(val => val.trim() !== '')
+    return key.value
 })
 
 const projectLanguages = computed(() => {
