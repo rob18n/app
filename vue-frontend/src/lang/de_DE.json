@@ -61,5 +61,10 @@
     "page.export.field.format.placeholder": "Ausw\u00e4hlen",
     "page.export.field.language.title": "Sprache ausw\u00e4hlen",
     "page.export.field.language.placeholder": "Alle Sprachen ausw\u00e4hlen",
-    "page.landing": "rob18n"
+    "page.landing": "rob18n",
+    "meta.title.ProjectListPage": "Startseite",
+    "meta.title.ProjectDashboardPage": "Dashboard",
+    "meta.title.ProjectVariableListPage": "Variablen",
+    "meta.title.ProjectVariableImportPage": "Datei Import",
+    "meta.title.ProjectVariableExportPage": "Datei Export"
 }

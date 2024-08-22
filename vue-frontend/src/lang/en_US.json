@@ -61,5 +61,10 @@
     "page.export.field.format.placeholder": "select",
     "page.export.field.language.title": "select language",
     "page.export.field.language.placeholder": "select all languages",
-    "page.landing": "rob18n"
+    "page.landing": "rob18n",
+    "meta.title.ProjectListPage": "Landingpage",
+    "meta.title.ProjectDashboardPage": "Dashboard",
+    "meta.title.ProjectVariableListPage": "variables",
+    "meta.title.ProjectVariableImportPage": "file import",
+    "meta.title.ProjectVariableExportPage": "file export"
 }
