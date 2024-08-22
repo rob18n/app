@@ -60,5 +60,6 @@
     "page.export.field.format.title": "Format ausw\u00e4hlen",
     "page.export.field.format.placeholder": "Ausw\u00e4hlen",
     "page.export.field.language.title": "Sprache ausw\u00e4hlen",
-    "page.export.field.language.placeholder": "Alle Sprachen ausw\u00e4hlen"
+    "page.export.field.language.placeholder": "Alle Sprachen ausw\u00e4hlen",
+    "page.landing": "rob18n"
 }
