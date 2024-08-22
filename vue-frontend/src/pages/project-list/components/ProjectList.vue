@@ -1,6 +1,5 @@
 <template>
     <div class="card">
-        <h5 class="card-header">current projects</h5>
         <div class="card-body">
             <h5 class="card-title">{{ t('page.landing.list.title') }}</h5>
             <p class="card-text">{{ t('page.landing.list.info') }}</p>
