@@ -3,22 +3,22 @@
         <div id="sidebar" class="d-flex flex-column">
             <div class="search-box card mb-3">
                 <div class="card-body">
-                    <label for="keySearchInput" class="form-label">Suche</label>
-                    <input type="text" class="form-control" id="keySearchInput" placeholder="Key eingeben"
-                        v-model="searchInput" />
+                    <label for="keySearchInput" class="form-label">{{ t('page.variable.search') }}</label>
+                    <input type="text" class="form-control" id="keySearchInput"
+                        :placeholder="t('page.variable.search.placeholder')" v-model="searchInput" />
                 </div>
             </div>
 
             <div class="sort-box mb-3 d-flex justify-content-end">
                 <div class="btn-group">
                     <button class="btn btn-secondary" @click="toggleDropdown">
-                        Sortieren
+                        {{ t('button.sort') }}
                     </button>
                     <ul v-show="isDropdownOpen" class="dropdown-menu show dropdown-menu-end"
                         style="left: auto; right: 0; top: 40px;">
                         <li>
                             <a class="dropdown-item" href="#" @click.prevent="setSortOrder('key', 'asc')">
-                                Alphabetisch: Aufsteigend
+                                {{ t('sort.alpha.asc') }}
                                 <span v-if="sortBy === 'key' && sortOrder === 'asc'">
                                     <AkCheck />
                                 </span>
@@ -26,7 +26,7 @@
                         </li>
                         <li>
                             <a class="dropdown-item" href="#" @click.prevent="setSortOrder('key', 'desc')">
-                                Alphabetisch: Absteigend
+                                {{ t('sort.alpha.desc') }}
                                 <span v-if="sortBy === 'key' && sortOrder === 'desc'">
                                     <AkCheck />
                                 </span>
@@ -34,7 +34,7 @@
                         </li>
                         <li>
                             <a class="dropdown-item" href="#" @click.prevent="setSortOrder('id', 'asc')">
-                                Nach Erstellung: Aufsteigend
+                                {{ t('sort.creation.asc') }}
                                 <span v-if="sortBy === 'id' && sortOrder === 'asc'">
                                     <AkCheck />
                                 </span>
@@ -42,7 +42,7 @@
                         </li>
                         <li>
                             <a class="dropdown-item" href="#" @click.prevent="setSortOrder('id', 'desc')">
-                                Nach Erstellung: Absteigend
+                                {{ t('sort.creation.desc') }}
                                 <span v-if="sortBy === 'id' && sortOrder === 'desc'">
                                     <AkCheck />
                                 </span>
@@ -55,13 +55,13 @@
             <div class="entries flex-grow-1 w-100">
                 <ul class="list-group">
                     <li class="list-group-item" v-if="!hasLoaded">
-                        Lädt ...
+                        {{ t('general.loading') }}
                     </li>
                     <li class="list-group-item list-group-item-info" v-if="hasLoaded && !hasEntries">
-                        Keine Einträge vorhanden
+                        {{ t('general.no-entries') }}
                     </li>
-                    <li class="list-group-item list-group-item-action" v-for="entry in sortedEntries" :key="entry.key"
-                        @click="selectVariable(entry)">
+                    <li class="list-group-item list-group-item-action" v-for="(entry, index) in sortedEntries"
+                        :key="entry.key" @click="selectVariable(entry)">
                         <p>{{ entry.key }}</p>
                         <small class="text-muted">{{ entry.description }}</small>
                     </li>
@@ -79,12 +79,14 @@
 import { computed, ref } from "vue";
 import { useSelectedProjectStore } from '@/stores/selectedProjectStore'
 import LanguageVariableAddModal from './LanguageVariableAddModal.vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const selectedProjectStore = useSelectedProjectStore()
 const { projectsLoaded, projects, selectedVariable } = selectedProjectStore
 const searchInput = ref('')
 const sortOrder = ref('asc')
-const sortBy = ref('key')  // Default sort by 'key'
+const sortBy = ref('key')
 const isDropdownOpen = ref(false)
 
 const hasLoaded = computed(() => {
@@ -99,6 +101,7 @@ const keyEntries = computed(() => {
 })
 
 const sortedEntries = computed(() => {
+    return keyEntries.value
     return keyEntries.value.slice().sort((a, b) => {
         if (sortBy.value === 'key') {
             if (sortOrder.value === 'asc') {
@@ -127,7 +130,7 @@ const selectVariable = function (variable) {
 const setSortOrder = function (criteria, order) {
     sortBy.value = criteria
     sortOrder.value = order
-    isDropdownOpen.value = false // Close dropdown after selection
+    isDropdownOpen.value = false
 }
 
 const toggleDropdown = function () {

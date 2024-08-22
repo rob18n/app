@@ -1,41 +1,41 @@
 <template>
     <div>
-        <a href="#" class="btn btn-primary" @click="openModal">Add project</a>
+        <a href="#" class="btn btn-primary" @click="openModal">{{ t('button.add.project') }}</a>
         <!-- Modal -->
         <div class="modal fade" id="projectAddModal" tabindex="-1" aria-labelledby="projectAddModalLabel"
-            aria-hidden="true" ref="modal">
+            aria-hidden="true" ref="modal" data-bs-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="projectAddModalLabel">Projekt hinzufügen</h5>
+                        <h5 class="modal-title" id="projectAddModalLabel">{{ t('modal.project.add.field.title') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <div class="modal-body text-start">
                         <div class="general-data mb-3">
                             <div class="mb-3">
-                                <label for="title" class="form-label">Projektname</label>
-                                <input type="text" class="form-control" id="title" placeholder="Hello world"
-                                    v-model="title">
+                                <label for="title" class="form-label">{{ t('modal.project.add.field.title') }}</label>
+                                <input type="text" class="form-control" id="title"
+                                    :placeholder="t('modal.project.add.field.title.placeholder')" v-model="title">
                             </div>
                             <div class="mb-3">
-                                <label for="description" class="form-label">Beschreibung</label>
+                                <label for="description" class="form-label">
+                                    {{ t('modal.project.add.field.description') }}
+                                </label>
                                 <textarea class="form-control" id="description" rows="3"
                                     v-model="description"></textarea>
                             </div>
                         </div>
                         <hr>
                         <div class="language-data">
-                            <p class="fs-5">Sprachen verwalten</p>
-                            <p>Setze die benötigten Sprachen zusammen und wähle im Anschluss eine aus, die deine
-                                Hauptsprache sein soll. Sie dient für alle
-                                Sprachvariablen als technische Basis.</p>
+                            <p class="fs-5">{{ t('modal.project.add.languages.title') }}</p>
+                            <p>{{ t('modal.project.add.languages.info') }}</p>
                             <SearchSelectInput @addLanguage="addLanguage" :selected-languages="selectedLanguages"
                                 class="mb-3"></SearchSelectInput>
 
                             <ul class="list-group">
                                 <li class="list-group-item" v-if="!selectedLanguages.length">
-                                    Keine Einträge vorhanden
+                                    {{ t('general.no-entries') }}
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center"
                                     v-for="(language, index) in selectedLanguages">
@@ -59,8 +59,9 @@
 
                     <div class=" modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-                        <button type="button" class="btn btn-primary" @click="store"
-                            :disabled="!hasContent">Absenden</button>
+                        <button type="button" class="btn btn-primary" @click="store" :disabled="!hasContent">
+                            {{ t('buttons.submit') }}
+                        </button>
                     </div>
                 </div>
             </div>
@@ -73,7 +74,9 @@ import { computed, onMounted, ref } from 'vue'
 import { Modal } from 'bootstrap'
 import { useProjectStore } from '@/stores/projectStore'
 import SearchSelectInput from './SearchSelectInput.vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const projectStore = useProjectStore()
 const modal = ref(null)
 const title = ref('')
