@@ -14,7 +14,7 @@ handleLangFolder().then(() => {
 });
 
 function getData() {
-    fetch('http://localhost:2402/language-key/export?project_id=25&languages=["de_DE", "en_US"]&format=json', {
+    fetch('http://localhost:2402/language-key/export?project_id=27&languages=["de_DE", "en_US"]&format=json', {
         method: 'POST',
     })
         .then((response) => response.json())
