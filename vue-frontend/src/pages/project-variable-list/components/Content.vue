@@ -1,5 +1,5 @@
 <template>
-    <div id="content" class="col-12 col-md-8">
+    <div id="content" class="col-12 col-md-8 mt-3 mt-md-0">
         <div v-if="showContent">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -25,8 +25,8 @@
         </div>
         <div v-else class="d-flex justify-content-center align-items-center h-100">
             <div class="text-center">
-                <p class="fs-5">Keine Sprachvariable ausgewählt</p>
-                <p>Wähle eine Sprachvariable aus, die du verwalten möchtest.</p>
+                <p class="fs-5">{{ t('page.variables.content.no-selection') }}</p>
+                <p>{{ t('page.variables.content.no-selection.info') }}</p>
             </div>
         </div>
         <LanguageVariableDestroyModal :variable="variable"></LanguageVariableDestroyModal>
@@ -39,7 +39,9 @@ import { useSelectedProjectStore } from '@/stores/selectedProjectStore'
 import { useModalStore } from '@/stores/modalStore'
 import LanguageVariableDestroyModal from './LanguageVariableDestroyModal.vue'
 import LanguageVariableEditModal from './LanguageVariableEditModal.vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const modalStore = useModalStore()
 const { variableDeleteModalIsOpen, variableEditModalIsOpen } = modalStore
 const selectedProjectStore = useSelectedProjectStore()
@@ -56,7 +58,6 @@ const openDeleteModal = function () {
 const openEditModal = function () {
     modalStore.variableEditModalIsOpen = true
 }
-
 
 const showContent = computed(() => {
     return selectedProjectStore.selectedVariable != null

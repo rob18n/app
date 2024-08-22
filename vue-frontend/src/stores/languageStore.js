@@ -8,7 +8,7 @@ export const useLanguageStore = defineStore('languageStore', () => {
     const axios = inject('axios')
     const languagesLoaded = ref(false)
 
-    const get = function (key) {
+    const get = function () {
         return axios.get(`${config.apiUrl}/languages`, {})
             .then((response) => {
                 languages.value = response.data

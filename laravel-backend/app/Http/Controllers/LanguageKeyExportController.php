@@ -14,7 +14,8 @@ class LanguageKeyExportController extends Controller
     public function export(ExportLanguagesRequest $request)
     {
         $format = $request->format;
-        $selectedLanguages = Arr::flatten(json_decode($request->languages, true));
+        $languages = json_decode($request->languages, true);
+        $selectedLanguages = Arr::flatten($languages);
         $languages = Language::whereIn('shortkey', $selectedLanguages)->get()->pluck('id', 'shortkey')->toArray();
         $dataForFile = collect([]);
 
@@ -25,8 +26,8 @@ class LanguageKeyExportController extends Controller
             ]);
         }
 
-        $keys = LanguageKey::with(['values' => function ($query) use ($selectedLanguages) {
-            $query->whereIn('language_id', $selectedLanguages);
+        $keys = LanguageKey::with(['values' => function ($query) use ($languages) {
+            $query->whereIn('language_id', $languages);
         }])->get();
 
         foreach ($keys as $key) {
@@ -34,6 +35,7 @@ class LanguageKeyExportController extends Controller
                 $dataForFile[$value->language_id]['entries']->put($key->key, $value->value);
             }
         }
+
         switch ($format) {
             case ('json'):
                 $dataForFile->each(function ($item) {

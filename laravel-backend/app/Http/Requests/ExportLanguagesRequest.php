@@ -24,7 +24,7 @@ class ExportLanguagesRequest extends FormRequest
         return [
             'format' => 'required|string',
             'languages' => 'required|string',
-            'project_id' => 'required|string',
+            'project_id' => 'required',
         ];
     }
 }

@@ -5,7 +5,7 @@
             @click="openFileDialog">
             <div class="text-center">
                 <BsUpload />
-                <p class="pt-3">Ziehe die Dateien mit Drag and Drop hier rein, oder klicke auf das Feld.</p>
+                <p class="pt-3">{{ t('page.import.upload.description') }}</p>
             </div>
             <input type="file" ref="fileInputRef" class="d-none" @change="handleFileSelect" multiple accept=".json" />
         </div>
@@ -15,10 +15,14 @@
                 class="list-group-item d-flex flex-column align-items-start">
                 <div class="d-flex justify-content-between align-items-center w-100">
                     <span>{{ fileObj.file.name }}</span>
-                    <button class="btn btn-danger btn-sm" @click="removeFile(index)">Delete</button>
+                    <button class="btn btn-danger btn-sm" @click="removeFile(index)">
+                        {{ t('button.delete') }}
+                    </button>
                 </div>
                 <select class="form-select mt-2" v-model="fileObj.language" @change="handleLanguageChange">
-                    <option value="" disabled>Select language</option>
+                    <option value="" disabled>
+                        {{ t('page.import.upload.select-language') }}
+                    </option>
                     <option v-for="lang in availableLanguages(fileObj)" :key="lang.id" :value="lang.id">
                         {{ lang.shortkey }}
                     </option>
@@ -26,8 +30,9 @@
             </li>
         </ul>
         <div class="d-flex justify-content-end">
-            <button class="btn btn-primary mt-3" @click="uploadFiles" :disabled="!filesReadyForUpload">Upload
-                Files</button>
+            <button class="btn btn-primary mt-3" @click="uploadFiles" :disabled="!filesReadyForUpload">
+                {{ t('button.upload') }}
+            </button>
         </div>
     </div>
 </template>
@@ -37,7 +42,9 @@ import { ref, computed } from 'vue'
 import axios from 'axios'
 import { useSelectedProjectStore } from '@/stores/selectedProjectStore'
 import config from '@/config'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const selectedProjectStore = useSelectedProjectStore()
 const { languages, project } = selectedProjectStore
 const isDragOver = ref(false)
