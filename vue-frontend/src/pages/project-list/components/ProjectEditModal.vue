@@ -1,8 +1,8 @@
 <template>
     <div>
-        <button type="button" class="btn btn-secondary" @click="openModal">
+        <div class="btn btn-secondary" @click.stop.prevent="openModal">
             <BsPencilFill />
-        </button>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="projectAddModal" tabindex="-1" aria-labelledby="projectAddModalLabel"
             aria-hidden="true" ref="modal" data-bs-backdrop="static">
