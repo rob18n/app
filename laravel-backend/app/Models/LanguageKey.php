@@ -16,6 +16,8 @@ class LanguageKey extends Model
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
+    protected $appends = ['filled_values_counter', 'empty_value_counter'];
+
     public function project()
     {
         return $this->belongsTo(Project::class);
@@ -30,6 +32,25 @@ class LanguageKey extends Model
     {
         return $this->hasMany(LanguageKeyValue::class);
     }
+
+    // attributes
+
+    public function getFilledValuesCounterAttribute()
+    {
+        $totalValues = $this->values()->count();
+        $filledValues = $this->values()->where('value', '!=', '')->count();
+
+        return "{$filledValues}/{$totalValues}";
+    }
+
+    public function getEmptyValueCounterAttribute()
+    {
+        $totalValues = $this->values()->count();
+        $filledValues = $this->values()->where('value', '!=', '')->count();
+        return $totalValues - $filledValues;
+    }
+
+    // methods
 
     static public function zip($fileData, $format)
     {
