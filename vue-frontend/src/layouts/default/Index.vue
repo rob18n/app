@@ -35,7 +35,7 @@
             </div>
         </nav>
 
-        <main class="container">
+        <main class="content">
             <router-view />
         </main>
     </div>

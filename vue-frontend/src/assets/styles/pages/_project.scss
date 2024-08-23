@@ -1,0 +1,25 @@
+#project-page {
+  .tab-header {
+    background: #fff;
+    .nav {
+      border: 0;
+      .nav-item {
+        .nav-link {
+          border-radius: 0;
+          color: var(--bs-dark);
+          &:hover {
+            color: var(--bs-primary);
+          }
+        }
+        .router-link-active {
+          background-color: var(--bs-primary);
+          border-color: var(--bs-primary);
+          color: #fff;
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,17 @@
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
+
+$theme-colors: (
+  "primary": #e65a2c,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+);
+
 @import "bootstrap/scss/bootstrap";
 
 @import "button.scss";
@@ -10,6 +22,9 @@
 // custom components
 @import "components/project-variable-list-sidebar";
 @import "components/import-upload";
+
+//  pages
+@import "pages/project";
 
 :root {
   --bs-primary: #e65a2c;
