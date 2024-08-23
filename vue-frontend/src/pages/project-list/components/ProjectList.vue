@@ -12,7 +12,7 @@
                 {{ t('general.no-entries') }}
             </div>
             <div class="list-group-item d-flex justify-content-between align-items-top"
-                v-for="project in projectEntries" :key="project.id" @click.self="goToDashboard(project)">
+                v-for="project in projectEntries" :key="project.id" @click.stop="goToDashboard($event, project)">
                 <div>
                     <h3 class="display-7">{{ project.title }}</h3>
                     <p class="text-muted" v-html="project.description"></p>
@@ -45,9 +45,12 @@ const projectStore = useProjectStore()
 const { projectsLoaded, projects } = projectStore
 const languageStore = useLanguageStore()
 
-const goToDashboard = function (project) {
-    console.log(project)
-    router.push({ name: 'ProjectDashboardPage', params: { id: project.id } })
+const goToDashboard = function (ev, project) {
+    const classList = Array.from(ev.target.classList)
+
+    if (!classList.includes('modal-footer') && !classList.includes('modal') && !classList.includes('btn')) {
+        router.push({ name: 'ProjectDashboardPage', params: { id: project.id } })
+    }
 }
 
 const hasLoaded = computed(() => {

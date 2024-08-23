@@ -57,7 +57,7 @@
                         </div>
                     </div>
 
-                    <div class=" modal-footer">
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
                         <button type="button" class="btn btn-primary" @click="store" :disabled="!hasContent">
                             {{ t('button.submit') }}
