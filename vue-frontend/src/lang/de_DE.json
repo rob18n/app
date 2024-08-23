@@ -32,13 +32,13 @@
     "page.variable.search.placeholder": "Variable eingeben",
     "button.sort": "Sortieren",
     "sort.alpha.asc": "Alphabetisch: Aufsteigend",
-    "sort.alpha": "Alphabetisch: Absteigend",
+    "sort.alpha.desc": "Alphabetisch: Absteigend",
     "sort.creation.asc": "Nach Erstellung: Aufsteigend",
     "page.variables.title": "Variablen",
     "sort.creation.desc": "Nach Erstellung: Absteigend",
     "page.variables.content.no-selection": "Keine Sprachvariable ausgew\u00e4hlt",
     "page.variables.content.no-selection.info": "W\u00e4hle eine Sprachvariable aus, die du verwalten m\u00f6chtest",
-    "modal.variable.delete.info": "M\u00f6chtest du die Variable {{ key }} wirklich l\u00f6schen?",
+    "modal.variable.delete.info": "M\u00f6chtest du die Variable { key } wirklich l\u00f6schen?",
     "modal.variable.edit.title": "Variable bearbeiten",
     "modal.variable.edit.variable": "Variable",
     "modal.variable.edit.variable.placeholder": "Hello World",
@@ -66,5 +66,11 @@
     "meta.title.ProjectDashboardPage": "Dashboard",
     "meta.title.ProjectVariableListPage": "Variablen",
     "meta.title.ProjectVariableImportPage": "Datei Import",
-    "meta.title.ProjectVariableExportPage": "Datei Export"
+    "meta.title.ProjectVariableExportPage": "Datei Export",
+    "page.variable.counter": "<b>{counter}<\/b> Variablen gefunden",
+    "modal.variable.delete.title": "Variable l\u00f6schen",
+    "button.filter": "Filtern",
+    "filter.all": "Alle anzeigen",
+    "filter.non_empty": "Ausgef\u00fcllte anzeigen",
+    "filter.empty": "Zeige leere Eintr\u00e4ge"
 }

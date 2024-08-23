@@ -1,15 +1,17 @@
 <template>
     <div>
-        <button type="button" class="btn btn-danger" @click="openModal">
+        <div class="btn btn-danger" @click.stop.prevent="openModal">
             <BsTrashFill />
-        </button>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="projectDestroyModal" tabindex="-1" aria-labelledby="projectDestroyModalLabel"
             aria-hidden="true" ref="modal" data-bs-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="projectDestroyModalLabel">{{ t('modal.project.delete.title') }}</h5>
+                        <h5 class="modal-title" id="projectDestroyModalLabel">
+                            {{ t('modal.project.delete.title') }}
+                        </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-start">
