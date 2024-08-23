@@ -23,6 +23,10 @@
 .entries {
   overflow-y: auto;
   flex-grow: 1;
+  .description {
+    max-width: 200px;
+    height: 35px;
+  }
 }
 
 .add-box {
