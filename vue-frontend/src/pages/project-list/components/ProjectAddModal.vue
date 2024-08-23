@@ -60,7 +60,7 @@
                     <div class=" modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
                         <button type="button" class="btn btn-primary" @click="store" :disabled="!hasContent">
-                            {{ t('buttons.submit') }}
+                            {{ t('button.submit') }}
                         </button>
                     </div>
                 </div>
