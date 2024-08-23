@@ -55,8 +55,18 @@ export const useSelectedProjectStore = defineStore('selectedProjectStore', () =>
         }).then((response) => {
             const keyIndex = project.value.keys.findIndex(k => k.id === variable.language_key_id)
             const variableIndex = project.value.keys[keyIndex].values.findIndex(v => v.id === variable.id)
+            let filledValues = 0
 
             project.value.keys[keyIndex].values[variableIndex].value = variable.value
+            console.log("a", project.value.keys[keyIndex])
+
+            project.value.keys[keyIndex].values.forEach(v => {
+                if (v.value != '') {
+                    filledValues++
+                }
+            })
+
+            project.value.keys[keyIndex].filled_values_counter = `${filledValues}/${project.value.keys[keyIndex].values.length}`
         }).catch((e) => {
             return e
         })
