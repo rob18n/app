@@ -2,6 +2,11 @@
     <div id="project-page">
         <div class="tab-header">
             <ul class="container nav nav-tabs">
+                <li class="nav-item">
+                    <router-link :to="{ name: 'ProjectListPage' }" class="nav-link project-tab">
+                        <BxArrowBack /> {{ t('tab.projects') }}
+                    </router-link>
+                </li>
                 <li v-for="tab in tabs" :key="tab.name" class="nav-item">
                     <router-link :to="{ name: tab.name, params: { id: $route.params.id } }" class="nav-link"
                         :class="{ active: $route.name === tab.name }">

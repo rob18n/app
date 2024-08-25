@@ -123,4 +123,10 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'github' => [
+        'owner' => 'rob18n',
+        'repo' => 'documentation'
+    ],
+
+    'version' => '0.0.0',
 ];
