@@ -72,5 +72,13 @@
     "button.filter": "Filtern",
     "filter.all": "Alle anzeigen",
     "filter.non_empty": "Ausgef\u00fcllte anzeigen",
-    "filter.empty": "Zeige leere Eintr\u00e4ge"
+    "filter.empty": "Zeige leere Eintr\u00e4ge",
+    "tab.projects": "Projekte",
+    "language.german": "Deutsch",
+    "language.english": "Englisch",
+    "navbar.update.label": "Update verf\u00fcgbar",
+    "navbar.update.info": "Es ist eine neuere Version verf\u00fcgbar!",
+    "navbar.update.current": "Aktuelle Version",
+    "navbar.update.new": "Neue Version",
+    "button.openchangelog": "Zum Changelog"
 }

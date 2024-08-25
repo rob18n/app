@@ -3,7 +3,7 @@
     "page.landing.herotext": "Manage your language variables on a easy way.",
     "page.landing.list.title": "Your projects",
     "page.landing.list.info": "Projects include your language variables. Edit, delete, or create them as you wish.",
-    "button.add.project": null,
+    "button.add.project": "add project",
     "modal.project.add.title": "add project",
     "modal.project.add.field.title": "project name",
     "modal.project.add.field.title.placeholder": "Hello World",
@@ -72,5 +72,13 @@
     "button.filter": "filter",
     "filter.all": "show all",
     "filter.non_empty": "show filled entries",
-    "filter.empty": "show empty entries"
+    "filter.empty": "show empty entries",
+    "tab.projects": "projects",
+    "language.german": "german",
+    "language.english": "english",
+    "navbar.update.label": "update available",
+    "navbar.update.info": "A newer version is available!",
+    "navbar.update.current": "current version",
+    "navbar.update.new": "new version",
+    "button.openchangelog": "changelog"
 }
