@@ -80,5 +80,16 @@
     "navbar.update.info": "A newer version is available!",
     "navbar.update.current": "current version",
     "navbar.update.new": "new version",
-    "button.openchangelog": "changelog"
+    "button.openchangelog": "changelog",
+    "button.add.language": "add language",
+    "modal.language.add.title": "add language",
+    "modal.language.add.new-language": "add {key}?",
+    "searchselectinput.placeholder": "search languages",
+    "modal.language.delete.title": "delete language",
+    "modal.language.delete.info": "Do you really want to delete \"{key}\"?",
+    "page.dashboard.stats.title": "Project statistics",
+    "page.dashboard.stats.variables": "variables",
+    "page.dashboard.stats.coverage": "Coverage",
+    "page.dashboard.stats.words": "Words",
+    "page.dashboard.stats.coverage.percent": "Coverage in percent"
 }

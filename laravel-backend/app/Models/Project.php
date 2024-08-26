@@ -59,11 +59,11 @@ class Project extends Model
         }
 
         foreach ($languageCoverage as $coverage) {
-            $coverage['coveragePercent'] = $variableCount ? round((($coverage['filled'] - $coverage['unfilled']) / $variableCount) * 100, 2) : 0;
+            $coverage['coveragePercent'] = $variableCount ? round(max(0, (($coverage['filled'] - $coverage['unfilled']) / $variableCount) * 100), 2) : 0;
         }
 
         $lowestCoverage = $languageCoverage->sortByDesc('unfilled')->first();
-        $coveragePercent = $variableCount ? (($lowestCoverage['filled'] - $lowestCoverage['unfilled']) / $variableCount) * 100 : 0;
+        $coveragePercent = $variableCount ? max(0, (($lowestCoverage['filled'] - $lowestCoverage['unfilled']) / $variableCount) * 100) : 0;
 
         $statistics->put('wordCount', $totalWordCount);
         $statistics->put('languageCoverage', $languageCoverage);

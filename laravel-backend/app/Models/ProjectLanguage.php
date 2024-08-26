@@ -13,4 +13,9 @@ class ProjectLanguage extends Model
     protected $table = 'project_languages';
 
     protected $fillable = ['project_id', 'language_id'];
+
+    public function keys()
+    {
+        return $this->hasMany(LanguageKey::class, 'id', 'language_id');
+    }
 }

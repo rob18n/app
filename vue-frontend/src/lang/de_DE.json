@@ -80,5 +80,16 @@
     "navbar.update.info": "Es ist eine neuere Version verf\u00fcgbar!",
     "navbar.update.current": "Aktuelle Version",
     "navbar.update.new": "Neue Version",
-    "button.openchangelog": "Zum Changelog"
+    "button.openchangelog": "Zum Changelog",
+    "button.add.language": "Sprache hinzuf\u00fcgen",
+    "modal.language.add.title": "Sprache hinzuf\u00fcgen",
+    "modal.language.add.new-language": "{key} hinzuf\u00fcgen?",
+    "searchselectinput.placeholder": "Sprachen durchsuchen",
+    "modal.language.delete.title": "Sprache l\u00f6schen",
+    "modal.language.delete.info": "M\u00f6chtest du \"{name}\" wirklich l\u00f6schen?",
+    "page.dashboard.stats.title": "Projektstatistiken",
+    "page.dashboard.stats.variables": "Variablen",
+    "page.dashboard.stats.coverage": "Abdeckung",
+    "page.dashboard.stats.words": "W\u00f6rter",
+    "page.dashboard.stats.coverage.percent": "Abdeckung in Prozent"
 }
