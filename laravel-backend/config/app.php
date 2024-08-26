@@ -125,8 +125,8 @@ return [
 
     'github' => [
         'owner' => 'rob18n',
-        'repo' => 'documentation'
+        'repo' => 'app'
     ],
 
-    'version' => '1.0.0',
+    'version' => '1.0.2',
 ];
