@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddLanguageToProjectRequest;
+use App\Http\Requests\DeleteProjectLanguageRequest;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Database\Eloquent\Builder;
+use App\Models\LanguageKey;
+use App\Models\LanguageKeyValue;
 use App\Models\Project;
 use App\Models\ProjectLanguage;
 use Illuminate\Http\Response;
@@ -72,5 +77,58 @@ class ProjectController extends Controller
         $project->delete();
 
         return response()->json(['message' => 'Project deleted'], Response::HTTP_OK);
+    }
+
+    public function addLanguage(AddLanguageToProjectRequest $request)
+    {
+        $project = Project::where('id', $request->project_id)->with('keys')->first();
+
+        if (!$project) {
+            return response()->json(['message' => 'Project not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $projectLanguage = ProjectLanguage::create([
+            'project_id' => $request->project_id,
+            'language_id' => $request->language_id,
+            'primary' => 0
+        ]);
+
+        foreach ($project->keys as $key) {
+            LanguageKeyValue::create([
+                'value' => '',
+                'language_id' => $request->language_id,
+                'language_key_id' => $key->id
+            ]);
+        }
+
+        $updatedProject = Project::where('id', $request->project_id)->with('keys', 'keys.values', 'keys.values.language', 'languages')->first();
+
+        return response()->json($updatedProject, Response::HTTP_OK);
+    }
+
+    public function destroyLanguage(DeleteProjectLanguageRequest $request)
+    {
+        $project = Project::where('id', $request->project_id)->first();
+
+        if (!$project) {
+            return response()->json(['message' => 'Project not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $projectLanguage = $project->languages->where('id', $request->language_id)->first();
+        $projectLanguage->delete();
+
+        $keys = LanguageKey::where('project_id', $request->project_id)->whereHas('values', function (Builder $query) use ($request) {
+            $query->where('language_id', $request->language_id);
+        })->get();
+
+        foreach ($keys as $key) {
+            foreach ($key->values as $value) {
+                $value->delete();
+            }
+        }
+
+        $updatedProject = Project::where('id', $request->project_id)->with('keys', 'keys.values', 'keys.values.language', 'languages')->first();
+
+        return response()->json($updatedProject, Response::HTTP_OK);
     }
 }

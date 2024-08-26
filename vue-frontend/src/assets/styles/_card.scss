@@ -1,16 +1,21 @@
 .card {
-    border: none;
-    border-radius: 0.25rem;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    margin-bottom: 20px;
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-bottom: 20px;
 }
 
 .card-header {
-    background-color: var(--bs-dark);
-    color: #fff;
+  background-color: #fff;
+  border: none;
 }
 
 .card-body {
-    background-color: #fff;
-    color: var(--bs-dark);
+  background-color: #fff;
+  color: var(--bs-dark);
+}
+
+.card > .card-header + .list-group,
+.card > .list-group + .card-footer {
+  border-radius: 0;
 }

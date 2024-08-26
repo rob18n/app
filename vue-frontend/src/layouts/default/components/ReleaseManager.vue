@@ -3,13 +3,13 @@
         <a class="nav-link" :class="{ 'dropdown-toggle': !isUp2date }" href="#" id="languageDropdown" role="button">
             <span v-if="isLoading">{{ t('general.loading') }}</span>
             <span v-if="!isLoading && isUp2date" @click="toggleDropdown">
-                <span>{{ version }}</span>
+                <span>v.{{ version }}</span>
             </span>
             <span v-if="!isLoading && !isUp2date" @click="toggleDropdown">
                 <span>{{ t('navbar.update.label') }}</span>
             </span>
         </a>
-        <div class="dropdown-menu dropdown-menu-end" :class="{ show: dropdownOpen }">
+        <div class="dropdown-menu dropdown-menu-end" :class="{ show: dropdownOpen }" v-if="!isUp2date">
             <div class="dropdown-item">
                 <b>{{ t('navbar.update.info') }}</b>
                 <ul class="mt-2">

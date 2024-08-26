@@ -36,6 +36,28 @@ export const useSelectedProjectStore = defineStore('selectedProjectStore', () =>
         })
     }
 
+    const addLanguage = async function (newLanguage) {
+        return axios.post(`${config.apiUrl}/projects/add-language`, {
+            project_id: project.value.id,
+            language_id: newLanguage.id
+        }).then((response) => {
+            project.value = response.data
+        }).catch((e) => {
+            return e
+        })
+    }
+
+    const destroyLanguage = async function (language) {
+        return axios.post(`${config.apiUrl}/projects/destroy-language`, {
+            project_id: project.value.id,
+            language_id: language.id
+        }).then((response) => {
+            project.value = response.data
+        }).catch((e) => {
+            return e
+        })
+    }
+
     const updateKey = async function (key, description) {
         return axios.put(`${config.apiUrl}/project-languages-key/${selectedVariable.value.id}`, {
             key: key,
@@ -58,8 +80,6 @@ export const useSelectedProjectStore = defineStore('selectedProjectStore', () =>
             let filledValues = 0
 
             project.value.keys[keyIndex].values[variableIndex].value = variable.value
-            console.log("a", project.value.keys[keyIndex])
-
             project.value.keys[keyIndex].values.forEach(v => {
                 if (v.value != '') {
                     filledValues++
@@ -93,6 +113,6 @@ export const useSelectedProjectStore = defineStore('selectedProjectStore', () =>
 
     return {
         project, projectLoaded, keys, languages, selectedVariable,
-        get, store, checkIfKeyExists, selectVariable, updateKeyValue, destroy, updateKey
+        get, store, checkIfKeyExists, selectVariable, updateKeyValue, destroy, updateKey, addLanguage, destroyLanguage
     }
 })
