@@ -16,7 +16,7 @@
             </ul>
         </div>
 
-        <div class="container tab-content mt-3">
+        <div class="container tab-content pt-5">
             <router-view></router-view>
         </div>
     </div>
@@ -26,10 +26,12 @@
 import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useSelectedProjectStore } from '@/stores/selectedProjectStore'
+import { useLanguageStore } from '@/stores/languageStore'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 const selectedProjectStore = useSelectedProjectStore()
+const languageStore = useLanguageStore()
 const { project } = selectedProjectStore
 const route = useRoute()
 
@@ -41,6 +43,10 @@ const tabs = computed(() => [
 ])
 
 onMounted(() => {
+    if (!languageStore.languages.length) {
+        languageStore.get()
+    }
+
     selectedProjectStore.get(route.params.id)
 })
 </script>
