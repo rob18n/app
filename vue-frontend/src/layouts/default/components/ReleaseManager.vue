@@ -21,7 +21,7 @@
                     </li>
                 </ul>
             </div>
-            <button class="btn btn-primary w-100 mt-3">{{ t('button.openchangelog') }}</button>
+            <button class="btn btn-primary w-100 mt-3" @click="goToDocu">{{ t('button.openchangelog') }}</button>
         </div>
     </li>
 </template>
@@ -54,6 +54,10 @@ const getReleases = function () {
         }).finally(f => {
             isLoading.value = false
         })
+}
+
+const goToDocu = function () {
+    window.open(`https://rob18n.github.io/app/docs/changelog/${gitVersion.value}`)
 }
 
 onMounted(() => {
