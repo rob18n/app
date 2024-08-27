@@ -35,13 +35,10 @@ const select = function (language) {
 
 const filteredOptions = computed(() => {
     return languageStore.languages.filter(language => {
-        // Überprüfen, ob der shortkey bereits in selectedLanguages enthalten ist
-        const isSelected = props.selectedLanguages.some(selectedLang => selectedLang.shortkey === language.shortkey);
-
-        // Filtere die Optionen basierend auf dem Suchbegriff und ob sie ausgewählt wurden
-        return !isSelected && language.shortkey.toLowerCase().includes(searchTerm.value.toLowerCase());
-    });
-});
+        const isSelected = props.selectedLanguages.some(selectedLang => selectedLang.shortkey === language.shortkey)
+        return !isSelected && language.shortkey.toLowerCase().includes(searchTerm.value.toLowerCase())
+    })
+})
 
 
 const hideDropdown = () => {

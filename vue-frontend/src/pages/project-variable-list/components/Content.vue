@@ -34,7 +34,7 @@
     </div>
 </template>
 <script setup>
-import { computed } from "vue";
+import { computed } from "vue"
 import { useSelectedProjectStore } from '@/stores/selectedProjectStore'
 import { useModalStore } from '@/stores/modalStore'
 import LanguageVariableDestroyModal from './LanguageVariableDestroyModal.vue'

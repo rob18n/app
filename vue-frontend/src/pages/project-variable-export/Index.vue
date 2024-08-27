@@ -39,9 +39,9 @@
 </template>
 
 <script setup>
-import { ref, watch, inject, onMounted } from 'vue'
+import { ref, inject } from 'vue'
 import { useSelectedProjectStore } from '@/stores/selectedProjectStore'
-import config from '@/config';
+import config from '@/config'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -54,7 +54,7 @@ const selectedLanguages = ref(null)
 
 const submit = function () {
     if (selectedLanguages.value == null) {
-        selectedLanguages.value = selectedProjectStore.languages.map(obj => obj.shortkey);
+        selectedLanguages.value = selectedProjectStore.languages.map(obj => obj.shortkey)
     } else {
         selectedLanguages.value = selectedLanguages.value
     }

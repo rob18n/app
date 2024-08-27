@@ -41,8 +41,8 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue';
-import { Modal } from 'bootstrap';
+import { computed, onMounted, ref } from 'vue'
+import { Modal } from 'bootstrap'
 import { useProjectStore } from '@/stores/projectStore'
 import { useI18n } from 'vue-i18n'
 
@@ -63,7 +63,7 @@ const openModal = () => {
     if (bootstrapModal) {
         bootstrapModal.show()
     }
-};
+}
 
 const store = () => {
     projectStore.update(props.project.id, title.value, description.value).then(t => {
