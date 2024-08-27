@@ -7,7 +7,7 @@ services:
     volumes:
       - .:/repo
     working_dir: /repo
-    entrypoint: ["sh", "-c", "./update-repo.sh"]
+    entrypoint: ["sh", "-c", "chmod +x update-repo.sh && ./update-repo.sh"]
 
   laravel-backend:
     build:
@@ -23,6 +23,10 @@ services:
       - repo-update
     entrypoint: >
       sh -c "
+      cd /var/www/html &&
+      composer install &&
+      cp .env.example .env &&
+      php artisan key:generate &&
       php artisan migrate --force &&
       php-fpm -D &&
       nginx -g 'daemon off;'
