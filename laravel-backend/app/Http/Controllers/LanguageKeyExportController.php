@@ -47,11 +47,42 @@ class LanguageKeyExportController extends Controller
                     $filePath = storage_path("app/{$shortKey}.json");
                     File::put($filePath, $jsonContent);
                 });
-            default:
                 break;
+
+            case ('php'):
+                $dataForFile->each(function ($item) {
+                    $shortKey = $item->get('shortKey');
+                    $entries = $item->get('entries');
+
+                    $nestedArray = [];
+                    foreach ($entries as $key => $value) {
+                        $this->setNestedArrayValue($nestedArray, explode('.', $key), $value);
+                    }
+
+                    $phpContent = "<?php\n\nreturn " . var_export($nestedArray, true) . ";\n";
+
+                    $filePath = storage_path("app/{$shortKey}.php");
+                    File::put($filePath, $phpContent);
+                });
+                break;
+
+            default:
+                throw new \Exception("Unsupported format: $format");
         }
 
         $zipUrl = LanguageKey::zip($dataForFile, $format);
+
         return response()->json($zipUrl, Response::HTTP_OK);
+    }
+
+    private function setNestedArrayValue(&$array, $keys, $value)
+    {
+        foreach ($keys as $key) {
+            if (!isset($array[$key]) || !is_array($array[$key])) {
+                $array[$key] = [];
+            }
+            $array = &$array[$key];
+        }
+        $array = $value;
     }
 }
