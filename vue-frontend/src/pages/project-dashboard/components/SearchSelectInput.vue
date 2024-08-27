@@ -37,10 +37,10 @@ const select = function (language) {
 
 const filteredOptions = computed(() => {
     return languageStore.languages.filter(language => {
-        const isSelected = props.selectedLanguages.some(selectedLang => selectedLang.shortkey === language.shortkey);
-        return !isSelected && language.shortkey.toLowerCase().includes(searchTerm.value.toLowerCase());
-    });
-});
+        const isSelected = props.selectedLanguages.some(selectedLang => selectedLang.shortkey === language.shortkey)
+        return !isSelected && language.shortkey.toLowerCase().includes(searchTerm.value.toLowerCase())
+    })
+})
 
 
 const hideDropdown = () => {

@@ -13,19 +13,19 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <ReleaseManager></ReleaseManager>
-                        <li class="nav-item dropdown" :class="{ show: dropdownOpen }">
-                            <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
-                                aria-expanded="dropdownOpen" @click="toggleDropdown">
-                                {{ currentLanguageLabel }}
+
+                        <LanguageToggle></LanguageToggle>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://rob18n.github.io/app/" target="_blank">
+                                {{ t('navbar.documentation') }}
+                                <BxLinkExternal />
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end" :class="{ show: dropdownOpen }"
-                                aria-labelledby="languageDropdown">
-                                <li v-for="(label, key) in languages" :key="key">
-                                    <a class="dropdown-item" href="#" @click.prevent="changeLanguage(key)">
-                                        {{ label }}
-                                    </a>
-                                </li>
-                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/rob18n/app" target="_blank">
+                                {{ t('navbar.github') }}
+                                <BxLinkExternal />
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -40,26 +40,8 @@
 
 <script setup>
 import ReleaseManager from './components/ReleaseManager.vue'
-import { ref, computed } from 'vue'
+import LanguageToggle from './components/LanguageToggle.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
-const { locale } = useI18n()
-const dropdownOpen = ref(false)
-
-const toggleDropdown = () => {
-    dropdownOpen.value = !dropdownOpen.value
-}
-
-const languages = {
-    de_DE: t('language.german'),
-    en_US: t('language.english')
-}
-
-const currentLanguageLabel = computed(() => languages[locale.value])
-
-const changeLanguage = (lang) => {
-    locale.value = lang
-    dropdownOpen.value = false
-}
 </script>

@@ -1,6 +1,14 @@
-version: '3.8'
+version: "3.8"
 
 services:
+  repo-update:
+    container_name: update-service
+    image: alpine
+    volumes:
+      - .:/repo
+    working_dir: /repo
+    entrypoint: ["sh", "-c", "./update-repo.sh"]
+
   laravel-backend:
     build:
       context: ./laravel-backend
@@ -12,6 +20,7 @@ services:
       - "2402:80"
     depends_on:
       - rob18n-db
+      - repo-update
     entrypoint: >
       sh -c "
       php artisan migrate --force &&
@@ -26,6 +35,8 @@ services:
     container_name: vue-frontend
     ports:
       - "3112:80"
+    depends_on:
+      - repo-update
 
   rob18n-db:
     image: mysql:8.0

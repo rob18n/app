@@ -10,8 +10,8 @@ for (const path in modules) {
 
 const i18n = createI18n({
     legacy: false,
-    locale: 'de_DE',
-    fallbackLocale: 'de_DE',
+    locale: 'en_US',
+    fallbackLocale: 'en_US',
     messages: messages
 });
 

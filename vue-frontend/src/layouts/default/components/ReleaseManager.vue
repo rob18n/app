@@ -27,7 +27,7 @@
 </template>
 <script setup>
 import { ref, inject, onMounted } from 'vue'
-import config from '@/config';
+import config from '@/config'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -36,7 +36,7 @@ const gitVersion = ref(null)
 const version = ref(null)
 const isUp2date = ref(true)
 const isLoading = ref(true)
-const dropdownOpen = ref(false);
+const dropdownOpen = ref(false)
 
 const toggleDropdown = () => {
     dropdownOpen.value = !dropdownOpen.value
