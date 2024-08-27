@@ -27,6 +27,18 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://rob18n.github.io/app/" target="_blank">
+                                {{ t('navbar.documentation') }}
+                                <BxLinkExternal />
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/rob18n/app" target="_blank">
+                                {{ t('navbar.github') }}
+                                <BxLinkExternal />
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -52,8 +64,8 @@ const toggleDropdown = () => {
 }
 
 const languages = {
+    en_US: t('language.english'),
     de_DE: t('language.german'),
-    en_US: t('language.english')
 }
 
 const currentLanguageLabel = computed(() => languages[locale.value])

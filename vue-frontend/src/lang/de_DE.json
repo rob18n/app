@@ -91,5 +91,7 @@
     "page.dashboard.stats.variables": "Variablen",
     "page.dashboard.stats.coverage": "Abdeckung",
     "page.dashboard.stats.words": "W\u00f6rter",
-    "page.dashboard.stats.coverage.percent": "Abdeckung in Prozent"
+    "page.dashboard.stats.coverage.percent": "Abdeckung in Prozent",
+    "navbar.documentation": "Dokumentation",
+    "navbar.github": "Github"
 }

@@ -16,7 +16,7 @@
     "button.cancel": "cancel",
     "general.loading": "Loading \u2026",
     "general.no-entries": "no entries",
-    "page.landing.title": "page.landing",
+    "page.landing.title": "rob18n",
     "modal.project.delete.title": "delete project",
     "modal.project.delete.info": "Do you really want to delete \"{title}\"?",
     "modal.project.edit.title": "edit project",
@@ -91,5 +91,7 @@
     "page.dashboard.stats.variables": "variables",
     "page.dashboard.stats.coverage": "Coverage",
     "page.dashboard.stats.words": "Words",
-    "page.dashboard.stats.coverage.percent": "Coverage in percent"
+    "page.dashboard.stats.coverage.percent": "Coverage in percent",
+    "navbar.documentation": "documentation",
+    "navbar.github": "Github"
 }
