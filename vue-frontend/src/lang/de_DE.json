@@ -45,7 +45,7 @@
     "modal.variable.edit.variable.error": "Der Key ist bereits vergeben",
     "modal.variable.edit.description": "Beschreibung",
     "modal.variable.add.title": "Variable hinzuf\u00fcgen",
-    "modal.variable.add.field.title": "Projektname",
+    "modal.variable.add.field.title": "Variable hinzuf\u00fcgen",
     "modal.variable.add.field.placeholder": "Hello World",
     "modal.variable.add.field.error": "Die Variable ist schon vergeben",
     "modal.variable.add.field.description": "Beschreibung",
@@ -56,7 +56,7 @@
     "page.import.upload.select-language": "W\u00e4hle eine sprache",
     "button.upload": "Hochladen",
     "page.export.title": "Datei Export",
-    "page.export.description": "Mit dem Datei Export hast du die M\u00f6glichkeit deine Sprachvariablen in Dateien zu b\u00fcndeln. Dies kannst du hier manuell herunterladen. <br>\nW\u00e4hle dazu einfach eine oder alle Sprachen und das passende Format aus. <br>\nDu kannst den Export auch \u00fcber die API ansto\u00dfen. F\u00fcr weitere Informationen, folge der Dokumentation.",
+    "page.export.description": "Mit dem Datei Export hast du die M\u00f6glichkeit deine Sprachvariablen in Dateien zu b\u00fcndeln. Dies kannst du hier manuell herunterladen. <br>\nW\u00e4hle dazu einfach eine oder alle Sprachen und das passende Format aus. <br>\nDu kannst den Export auch \u00fcber die API ansto\u00dfen. F\u00fcr weitere Informationen, folge der <a href=\"https:\/\/rob18n.github.io\/app\/docs\/guide\/usage\/export\" target=\"_blank\">Dokumentation<\/a>.",
     "page.export.field.format.title": "Format ausw\u00e4hlen",
     "page.export.field.format.placeholder": "Ausw\u00e4hlen",
     "page.export.field.language.title": "Sprache ausw\u00e4hlen",
@@ -93,5 +93,7 @@
     "page.dashboard.stats.words": "W\u00f6rter",
     "page.dashboard.stats.coverage.percent": "Abdeckung in Prozent",
     "navbar.documentation": "Dokumentation",
-    "navbar.github": "Github"
+    "navbar.github": "Github",
+    "language.de_DE": "Deutsch",
+    "language.en_US": "Englisch"
 }

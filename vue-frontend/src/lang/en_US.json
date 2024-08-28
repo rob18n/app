@@ -45,7 +45,7 @@
     "modal.variable.edit.variable.error": "key already given",
     "modal.variable.edit.description": "description",
     "modal.variable.add.title": "add variable",
-    "modal.variable.add.field.title": "project name",
+    "modal.variable.add.field.title": "add variable",
     "modal.variable.add.field.placeholder": "Hello World",
     "modal.variable.add.field.error": "The variable is already assigned",
     "modal.variable.add.field.description": "description",
@@ -56,7 +56,7 @@
     "page.import.upload.select-language": "select language",
     "button.upload": "upload",
     "page.export.title": "file export",
-    "page.export.description": "With the file export feature, you have the ability to bundle your language variables into files. You can manually download them here. <br>\nSimply select one or all languages and choose the appropriate format. <br>\nYou can also trigger the export via the API. For more information, follow the documentation.",
+    "page.export.description": "With the file export feature, you have the ability to bundle your language variables into files. You can manually download them here. <br>\nSimply select one or all languages and choose the appropriate format. <br>\nYou can also trigger the export via the API. For more information, follow the <a href=\"https:\/\/rob18n.github.io\/app\/docs\/guide\/usage\/export\" target=\"_blank\">documentation<\/a>.",
     "page.export.field.format.title": "select format",
     "page.export.field.format.placeholder": "select",
     "page.export.field.language.title": "select language",
@@ -93,5 +93,7 @@
     "page.dashboard.stats.words": "Words",
     "page.dashboard.stats.coverage.percent": "Coverage in percent",
     "navbar.documentation": "documentation",
-    "navbar.github": "Github"
+    "navbar.github": "Github",
+    "language.de_DE": "german",
+    "language.en_US": "english"
 }
