@@ -95,5 +95,7 @@
     "navbar.documentation": "documentation",
     "navbar.github": "Github",
     "language.de_DE": "german",
-    "language.en_US": "english"
+    "language.en_US": "english",
+    "modal.variable.add.nextkey": "Add another key",
+    "modal.variable.add.nextkey.placeholder": "The next variable starts with \u2026"
 }
