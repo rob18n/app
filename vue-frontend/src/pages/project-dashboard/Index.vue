@@ -10,7 +10,7 @@
         </div>
 
         <div class="row mt-3" v-if="statistics">
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-lg-3">
                 <div class="card">
                     <div class="card-header">
                         <span class="fs-5">{{ t('page.dashboard.stats.title') }}</span>
@@ -32,9 +32,9 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-9">
+            <div class="col-12 col-lg-9">
                 <div class="row">
-                    <div class="col-3" v-for="entry in languageCoverage">
+                    <div class="col-12 col-md-6 col-lg-3" v-for="entry in languageCoverage">
                         <div class="card">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <span class="fs-5">{{ entry.name }}</span>
