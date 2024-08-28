@@ -13,6 +13,7 @@
                             <select id="format-selection" class="form-select" v-model="format">
                                 <option disabled>{{ t('page.export.field.format.placeholder') }}</option>
                                 <option value="json" selected>.json</option>
+                                <option value="php" selected>.php</option>
                             </select>
                         </div>
                         <div class="col-8 mt-3">
@@ -54,15 +55,15 @@ const selectedLanguages = ref(null)
 
 const submit = function () {
     if (selectedLanguages.value == null) {
-        selectedLanguages.value = selectedProjectStore.languages.map(obj => obj.shortkey)
+        projectLanguageIds.value = selectedProjectStore.languages.map(obj => obj.shortkey);
     } else {
-        selectedLanguages.value = selectedLanguages.value
+        projectLanguageIds.value = [{ shortkey: selectedLanguages.value }];
     }
 
     return axios.post(`${config.apiUrl}/language-key/export`, {
         project_id: selectedProjectStore.project.id,
         format: format.value,
-        languages: JSON.stringify(selectedLanguages.value)
+        languages: JSON.stringify(projectLanguageIds.value)
     }).then((response) => {
         window.open(response.data, '_blank')
     }).catch((e) => {

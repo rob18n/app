@@ -11,6 +11,8 @@ $theme-colors: (
   "light": $light,
   "dark": $dark,
 );
+$link-color: #e65a2c;
+$link-hover-color: darken($link-color, 0.5);
 
 @import "bootstrap/scss/bootstrap";
 
