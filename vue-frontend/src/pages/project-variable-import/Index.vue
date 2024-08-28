@@ -16,6 +16,9 @@
                             <li class="list-group-item">
                                 .json
                             </li>
+                            <li class="list-group-item">
+                                .php (Laravel)
+                            </li>
                         </ul>
                     </div>
                 </div>

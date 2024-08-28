@@ -45,6 +45,20 @@ class LanguageKeyImportController extends Controller
                     'language' => $language,
                     'variables' => $decodedContent
                 ];
+            } elseif ($extension === 'php') {
+                $decodedContent = $this->parsePhpContent($content);
+
+                if (!is_array($decodedContent)) {
+                    return response()->json(['message' => 'Invalid PHP format. Expected an array.'], 400);
+                }
+
+                // Flache Struktur für verschachtelte Arrays erzeugen
+                $flattenedContent = $this->flattenArray($decodedContent);
+
+                $processedData[] = [
+                    'language' => $language,
+                    'variables' => $flattenedContent
+                ];
             } else {
                 return response()->json(['message' => 'Unsupported file format.'], 400);
             }
@@ -85,5 +99,31 @@ class LanguageKeyImportController extends Controller
         }
 
         return response()->json(['message' => 'Files uploaded successfully.'], 200);
+    }
+
+    private function parsePhpContent($content)
+    {
+        $tmpFilePath = storage_path('tmp_php_file.php');
+        file_put_contents($tmpFilePath, $content);
+
+        $data = include $tmpFilePath;
+
+        unlink($tmpFilePath);
+
+        return $data;
+    }
+
+    private function flattenArray(array $array, $prefix = '')
+    {
+        $result = [];
+        foreach ($array as $key => $value) {
+            $newKey = $prefix === '' ? $key : $prefix . '.' . $key;
+            if (is_array($value)) {
+                $result = array_merge($result, $this->flattenArray($value, $newKey));
+            } else {
+                $result[$newKey] = $value;
+            }
+        }
+        return $result;
     }
 }
