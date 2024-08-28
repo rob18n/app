@@ -95,5 +95,7 @@
     "navbar.documentation": "Dokumentation",
     "navbar.github": "Github",
     "language.de_DE": "Deutsch",
-    "language.en_US": "Englisch"
+    "language.en_US": "Englisch",
+    "modal.variable.add.nextkey": "Weiteren Key hinzuf\u00fcgen",
+    "modal.variable.add.nextkey.placeholder": "Die n\u00e4chste Variable startet mit.."
 }

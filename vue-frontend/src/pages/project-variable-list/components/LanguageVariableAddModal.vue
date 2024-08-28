@@ -42,12 +42,12 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" v-model="addMoreKeys" id="addMoreKeys">
                             <label class="form-check-label" for="addMoreKeys">
-                                Weiteren Key hinzufügen
+                                {{ t('modal.variable.add.nextkey') }}
                             </label>
                         </div>
                         <div class="mb-3" v-if="addMoreKeys">
                             <input type="text" class="form-control" id="startkey"
-                                placeholder="Die nächste Variable startet mit.." v-model="keyPreset">
+                                :placeholder="t('modal.variable.add.nextkey.placeholder')" v-model="keyPreset">
                         </div>
                     </div>
 
